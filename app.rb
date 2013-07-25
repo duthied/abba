@@ -68,3 +68,14 @@ get '/complete', :provides => 'image/gif' do
   prevent_caching
   send_blank
 end
+
+get '/signal', :provides => 'image/gif' do
+  required :experiment, :variant, :signal
+
+  experiment = Abba::Experiment.find_or_create_by_name(params[:experiment])
+  variant = experiment.variants.find_or_create_by_name(params[:variant])
+  signal = variant.signals.find_or_create_by_name(params[:signal])
+
+  prevent_caching
+  send_blank
+end

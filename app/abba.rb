@@ -2,5 +2,6 @@ module Abba
   autoload :Experiment, 'app/models/experiment'
   autoload :Request, 'app/models/request'
   autoload :Variant, 'app/models/variant'
+  autoload :Signal, 'app/models/signal'
   autoload :VariantPresentor, 'app/models/variant_presentor'
 end

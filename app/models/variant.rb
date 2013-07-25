@@ -11,6 +11,7 @@ module Abba
 
     has_many :started_requests, :as => :started_request, :class => Abba::Request, :dependent => :destroy
     has_many :completed_requests, :as => :completed_request, :class => Abba::Request, :dependent => :destroy
+    has_many :signals, :as => :signal, :class => Abba::Signal, :dependent => :destroy
 
     validates_presence_of :name
 

@@ -147,6 +147,17 @@ class @Abba
     @recordComplete(name)
     this
 
+  signal: (signal) ->
+    # Optionally pass a name, or read from the cookie
+    variant = @getVariantCookie()
+    return this unless variant
+
+    # If the test has already been completed, return
+    return this if @hasPersistCompleteCookie()
+    
+    @recordSignal(variant, signal)
+    this
+
   reset: ->
     @removeVariantCookie()
     @removePersistCompleteCookie()
@@ -177,6 +188,15 @@ class @Abba
   recordComplete: (name) ->
     # Record the experiment was completed on the server
     request("#{@endpoint}/complete", experiment: @name, variant: name)
+
+  recordSignal: (variant, signal) ->
+    # Record the signal on the server
+    request(
+      "#{@endpoint}/signal", 
+      experiment: @name,
+      variant:    variant.name,
+      signal:     signal
+    )
 
   # Variant Cookie
 
