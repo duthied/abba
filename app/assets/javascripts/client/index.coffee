@@ -194,7 +194,7 @@ class @Abba
     request(
       "#{@endpoint}/signal", 
       experiment: @name,
-      variant:    variant.name,
+      variant:    variant,
       signal:     signal
     )
 

@@ -74,7 +74,8 @@ get '/signal', :provides => 'image/gif' do
 
   experiment = Abba::Experiment.find_or_create_by_name(params[:experiment])
   variant = experiment.variants.find_or_create_by_name(params[:variant])
-  signal = variant.signals.find_or_create_by_name(params[:signal])
+  # signal = variant.signals.find_or_create_by_name(params[:signal])
+  signal = variant.signals.create!(:name => params[:signal])
 
   prevent_caching
   send_blank
